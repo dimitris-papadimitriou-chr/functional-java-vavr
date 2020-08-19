@@ -11,11 +11,11 @@ class Main {
 
   public static void main(String[] args) {
 
-  var clientName = new ClientController()
+  var nameOrError = new ClientController()
   .getAssignedEmployeeNameById(1);
   
     
-    System.out.println(clientName);
+    System.out.println(nameOrError);
   }
 
 }
