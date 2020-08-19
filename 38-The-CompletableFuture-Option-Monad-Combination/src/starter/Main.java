@@ -16,31 +16,31 @@ class Main {
 
   var controller = new ClientController();
 
- Try<Option<String>> tryOptionalClientName = Try.of(() -> controller.getAssignedEmployeeNameByIdAsync(1).get());
+ Try<Option<String>> tryOptionalName = Try.of(() -> controller.getAssignedEmployeeNameByIdAsync(1).get());
 
 
             {
-                var clientNameOrError = tryOptionalClientName
+                var employeeNameOrError =  tryOptionalName 
                         .fold(
                                 error -> error.getMessage(),
-                                optionalClientName -> optionalClientName.fold(
+                                optionalName -> optionalName.fold(
                                         () -> "no client found",
-                                        clientName -> clientName
+                                        name -> name
                                 )
                         );
-                System.out.println(clientNameOrError);
+                System.out.println(employeeNameOrError);
 
             }
 
             {
-                var clientNameOrError = tryOptionalClientName
+                var employeeNameOrError = tryOptionalName
                         .flatMap(bindT("no client found"))
                         .fold(
                                 error -> error.getMessage(),
-                                clientName -> clientName
+                                name -> name
                         );
 
-                System.out.println(clientNameOrError);
+                System.out.println(employeeNameOrError);
 
             }
   }
