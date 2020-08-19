@@ -13,7 +13,7 @@ public String getAssignedEmployeeNameById1(int clientId) {
             .getById(clientId)
             .flatMap(client->employeeRepository.getById(client.getEmployeeId()))
             .map(employee->employee.getName())
-            .orElse("no client found");
+            .orElse("nothing found");
       }
 
 
@@ -25,7 +25,7 @@ public String getAssignedEmployeeNameById1(int clientId) {
                 .map(Client::getId)//using method references
                 .flatMap(employeeRepository::getById)
                 .map(Employee::getName)
-                .orElse("no client found");
+                .orElse("nothing found");
       }
 
   }
