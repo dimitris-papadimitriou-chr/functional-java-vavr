@@ -16,20 +16,21 @@ class Main {
 
   public static void main(String[] args) { 
 
-  var controller = new ClientController();
  
-        {
-            CompletableFuture<Either<String, String>> clientNameFuture =
-              controller.getAssignedEmployeeNameByIdAsync(2);
+  var controller = new ClientController();
 
-            var clientNameOrError = Try(clientNameFuture::get)
-                    .getOrElseGet(throwableMessage())
-                    .fold(
-                            error -> error,
-                            clientName -> clientName
-                    );
-            System.out.println(clientNameOrError);
-        }
+
+  CompletableFuture<Either<String, String>> employeeNameFuture =
+                controller.getAssignedEmployeeNameByIdAsync(2);
+
+  var employeeNameOrError = Try(employeeNameFuture::get)
+                            .getOrElseGet(throwableMessage())
+                            .fold(
+                                    error -> error,
+                                    name -> name
+                            );
+                      
+  System.out.println(employeeNameOrError);
   }
 
 }
