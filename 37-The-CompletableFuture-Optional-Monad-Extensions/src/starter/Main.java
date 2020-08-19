@@ -14,15 +14,15 @@ class Main {
 
   var controller = new ClientController();
 
-Try<Optional<String>> tryOptionalClientName = 
+Try<Optional<String>> tryNameOptional = 
 Try.of(()-> controller.getAssignedEmployeeNameByIdAsync(2).get());
 
-var clientNameOrError = tryOptionalClientName
+var nameOrError = tryNameOptional
                     .getOrElseGet(e -> Optional.of(e.getMessage()))
-                    .orElse("no client found");
+                    .orElse("nothing found");
 
  
-    System.out.println(clientNameOrError);
+    System.out.println(nameOrError);
   }
 
 }
